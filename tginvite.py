@@ -17,6 +17,9 @@ def start(message):
     else:
         bot.reply_to(message, "Вот тут кнопочка, вступи как раз :3", reply_markup=markup)
 
+bot.polling()
+
+@bot.message_handler(commands=['broadcast'])
 def broadcast_message(message):
     if message.chat.type == "private":
         bot.reply_to(message, "Эта команда доступна только в групповых чатах или каналах.")
@@ -30,6 +33,5 @@ def broadcast_message(message):
             except Exception as e:
                 print(f"Не удалось отправить сообщение пользователю {user_id}. Ошибка: {e}")
         bot.reply_to(message, "Рассылка завершена.")
-
 
 bot.polling()
